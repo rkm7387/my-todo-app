@@ -1,14 +1,20 @@
-# Creating an Empty List:
-todos = []
-
 while True:
     user_action = input("Type add, show, edit, complete or exit:").strip()
 
     # Using Match Case: it is available after python 3.10 onwards.
     match user_action:
         case 'add':
-            todo = input("Enter a todo: ").title()
+            todo = input("Enter a todo: ").title() + "\n"
+
+            file = open("todos.txt", 'r')
+            todos = file.readlines()
+            file.close()
+
             todos.append(todo)
+
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
         case 'show' | 'display':
             for index, item in enumerate(todos):
                 row = f"{index+1}-{item}"
