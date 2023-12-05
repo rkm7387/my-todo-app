@@ -7,3 +7,4 @@ make love
 playing
 coding
 skiping
+clean the code
