@@ -25,29 +25,35 @@ while True:
             print(row)
 
     elif user_action.startswith("edit"):
+        try:
+            number = int(user_action[5:])-1
 
-        number = int(user_action[5:])-1
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+            new_todo = input("Enter the new todo: ")
+            todos[number] = new_todo + "\n"
 
-        new_todo = input("Enter the new todo: ")
-        todos[number] = new_todo + "\n"
-
-        with open("todos.txt", 'w') as file:
-            file.writelines(todos)
+            with open("todos.txt", 'w') as file:
+                file.writelines(todos)
+        except ValueError:
+            print("Your command is not valid🙂")
+            continue
 
     elif user_action.startswith("complete"):
+        try:
+            number = int(user_action[9:]) - 1
 
-        number = int(user_action[9:]) - 1
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+            todos.pop(number)
 
-        todos.pop(number)
-
-        with open("todos.txt", 'w') as file:
-            file.writelines(todos)
+            with open("todos.txt", 'w') as file:
+                file.writelines(todos)
+        except IndexError:
+            print("There is no item with that number:")
+            continue
 
     elif user_action.startswith("exit"):
         break
