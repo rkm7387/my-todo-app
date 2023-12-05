@@ -3,18 +3,18 @@ while True:
 
     # Using Match Case: it is available after python 3.10 onwards.
 
-    if "add" in user_action:
+    if user_action.startswith("add"):
         todo = user_action[4:]
 
         with open("todos.txt", 'r') as file:
             todos = file.readlines()
 
-        todos.append(todo)
+        todos.append(todo + '\n')
 
         with open("todos.txt", 'w') as file:
             file.writelines(todos)
 
-    elif "show" in user_action:
+    elif user_action.startswith("show"):
 
         with open("todos.txt", "r") as file:
             todos = file.readlines()
@@ -24,7 +24,7 @@ while True:
             row = f"{index+1}-{item}"
             print(row)
 
-    elif "edit" in user_action:
+    elif user_action.startswith("edit"):
 
         number = int(user_action[5:])-1
 
@@ -37,7 +37,7 @@ while True:
         with open("todos.txt", 'w') as file:
             file.writelines(todos)
 
-    elif "complete" in user_action:
+    elif user_action.startswith("complete"):
 
         number = int(user_action[9:]) - 1
 
@@ -49,7 +49,7 @@ while True:
         with open("todos.txt", 'w') as file:
             file.writelines(todos)
 
-    elif "exit" in user_action:
+    elif user_action.startswith("exit"):
         break
 
     else:
