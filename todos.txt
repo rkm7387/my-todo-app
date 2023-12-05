@@ -5,3 +5,5 @@ meditating
  add a new member
 make love
 playing
+coding
+skiping

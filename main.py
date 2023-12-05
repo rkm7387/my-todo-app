@@ -1,13 +1,16 @@
+def get_todos():
+    with open("todos.txt", 'r') as file_local:
+        todos_local = file.readlines()
+    return todos
+
+
 while True:
     user_action = input("Type add, show, edit, complete or exit:").strip()
-
-    # Using Match Case: it is available after python 3.10 onwards.
 
     if user_action.startswith("add"):
         todo = user_action[4:]
 
-        with open("todos.txt", 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(todo + '\n')
 
@@ -16,8 +19,7 @@ while True:
 
     elif user_action.startswith("show"):
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         for index, item in enumerate(todos):
             item = item.strip('\n')
@@ -28,8 +30,7 @@ while True:
         try:
             number = int(user_action[5:])-1
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             new_todo = input("Enter the new todo: ")
             todos[number] = new_todo + "\n"
@@ -44,8 +45,7 @@ while True:
         try:
             number = int(user_action[9:]) - 1
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             todos.pop(number)
 
