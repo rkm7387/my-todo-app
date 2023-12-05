@@ -9,3 +9,7 @@ def write_todos(todos_arg, filepath="todos.txt"):
     """ Write to do item in the text file."""
     with open("todos.txt", 'w') as file_local:
         file_local.writelines(todos_arg)
+
+
+if __name__ == "__main__":
+    print("Hey i am in function:")
